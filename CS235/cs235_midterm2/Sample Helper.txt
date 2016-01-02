@@ -1,0 +1,76 @@
+=========================================================================================
+
+CS 235 Midterm 2 Example Documentation
+
+=========================================================================================
+
+This document is here to help you understand the example we've provided.  It is strongly
+recommended that you read this document carefully; if you have questions about this
+document or any of the requirements, please contact a TA.
+
+=========================================================================================
+
+The following is drawn directly from the included file "sample_input.txt":
+	
+	Salt_Lake_City Denver Seattle San_Francisco Los_Angeles Portland
+
+	0	90	-1	200	230	175
+	75	0	100	-1	-1	-1
+	-1	125	0	-1	-1	50
+	-1	-1	-1	0	50	75
+	200	100	-1	50	0	-1
+	-1	-1	25	75	-1	0
+	
+This list of cities and corresponding grid of integers refers to the price to travel from
+one city to another.  Specifically, the following is the list of all valid flights from
+this input file:
+
+	Salt_Lake_City to Denver, $90
+	Salt_Lake_City to San_Francisco, $200
+	Salt_Lake_City to Los_Angeles, $230
+	Salt_Lake_City to Portland, $175
+	Denver to Salt_Lake_City, $75
+	Denver to Seattle, $100
+	Seattle to Denver, $125
+	Seattle to Portland, $50
+	San_Francisco to Los_Angeles, $50
+	San_Francisco to Portland, $75
+	Los_Angeles to Salt_Lake_City, $200
+	Los_Angeles to Denver, $100
+	Los_Angeles to San_Francisco, $50
+	Portland to Seattle, $25
+	Portland to San_Francisco, $75
+	
+A picture has been included in "sample_picture.png" to help you visualize this first 
+example.
+
+It should be noted that not all cities are connected, not all connections are two-way,
+and not all two-way connections have the same price going both ways.
+
+=========================================================================================
+
+When asked to report the cost to travel from "Salt_Lake_City" to "San_Francisco", the
+following is the correctly-formatted correct response:
+	
+	$200
+	
+When asked to report the cost to travel from "San_Francisco" to "Salt_Lake_City", the
+following is the correctly-formatted correct response:
+
+	No direct flight
+
+=========================================================================================
+
+When asked to find the least expensive path from "Salt_Lake_City" to "San_Francisco", the 
+following is the correctly-formatted correct response:
+
+	Salt_Lake_City San_Francisco $200
+	
+When asked to find the least expensive path from "San_Francisco" to "Salt_Lake_City", the
+following is the correctly-formatted correct response:
+
+	San_Francisco Los_Angeles Denver Salt_Lake_City $225
+	
+Note that the answers have different paths and different prices; this is common.  The 
+most direct flight may not be the least expensive.
+=========================================================================================

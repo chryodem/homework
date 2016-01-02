@@ -1,0 +1,296 @@
+====================================================================================
+
+EXAMPLE
+
+The following is an example of how the algorithm is supposed to run.  It uses 2-
+digit integer Strings contained in "small.dat", included with this file.  For this
+example, assume that each main-memory array is of size 10.  "--" in this document
+represents null; nulls are not written to files.  File names used here are examples;
+there are no strict requirements as to what you must name your files.  File contents
+are shown here in array format for simplicity.
+
+====================================================================================
+
+PRELIMINARY
+
+Contents of "small.dat":
+[25, 21, 03, 92, 60, 72, 51, 68, 25, 09, 09, 51, 36, 08, 35, 13, 11, 95, 05, 34, 79, 
+56, 94, 14, 79, 47, 24, 84]
+
+Size of "small.dat":
+28
+
+Intermediate files to create:
+3		(roundUp(28/10))
+
+====================================================================================
+
+CREATING INTERMEDIATE FILES
+
+First main-memory array loaded with chunk 0:
+[25, 21, 03, 92, 60, 72, 51, 68, 25, 09]
+
+First main-memory array sorted, then written to "small_0.dat":
+[03, 09, 21, 25, 25, 51, 60, 68, 72, 92]
+
+First main-memory array loaded with chunk 1:
+[09, 51, 36, 08, 35, 13, 11, 95, 05, 34]
+
+First main-memory array sorted, then written to "small_1.dat":
+[05, 08, 09, 11, 13, 34, 35, 36, 51, 95]
+
+First main-memory array loaded with chunk 2:
+[79, 56, 94, 14, 79, 47, 24, 84, --, --]
+
+First main-memory array sorted, then written to "small_2.dat":
+[14, 24, 47, 56, 79, 79, 84, 94, --, --]
+
+====================================================================================
+
+MERGING INTERMEDIATE FILES
+	[shows first main-memory array, second main-memory array, and final output file]
+
+
+Load first main-memory array with 3 records from each file:
+[03, 09, 21, 05, 08, 09, 14, 24, 47, --]
+[--, --, --, --, --, --, --, --, --, --]
+[]
+
+Transfer smallest element to second main-memory array:
+[--, 09, 21, 05, 08, 09, 14, 24, 47, --]
+[03, --, --, --, --, --, --, --, --, --]
+[]
+
+Transfer smallest element to second main-memory array:
+[--, 09, 21, --, 08, 09, 14, 24, 47, --]
+[03, 05, --, --, --, --, --, --, --, --]
+[]
+
+Transfer smallest element to second main-memory array:
+[--, 09, 21, --, --, 09, 14, 24, 47, --]
+[03, 05, 08, --, --, --, --, --, --, --]
+[]
+
+Transfer smallest element to second main-memory array:
+[--, --, 21, --, --, 09, 14, 24, 47, --]
+[03, 05, 08, 09, --, --, --, --, --, --]
+[]
+
+Transfer smallest element to second main-memory array:
+[--, --, 21, --, --, --, 14, 24, 47, --]
+[03, 05, 08, 09, 09, --, --, --, --, --]
+[]
+
+Chunk 1 from first main-memory array exhausted; load next 3 records:
+[--, --, 21, 11, 13, 34, 14, 24, 47, --]
+[03, 05, 08, 09, 09, --, --, --, --, --]
+[]
+
+Transfer smallest element to second main-memory array:
+[--, --, 21, --, 13, 34, 14, 24, 47, --]
+[03, 05, 08, 09, 09, 11, --, --, --, --]
+[]
+
+Transfer smallest element to second main-memory array:
+[--, --, 21, --, --, 34, 14, 24, 47, --]
+[03, 05, 08, 09, 09, 11, 13, --, --, --]
+[]
+
+Transfer smallest element to second main-memory array:
+[--, --, 21, --, --, 34, --, 24, 47, --]
+[03, 05, 08, 09, 09, 11, 13, 14, --, --]
+[]
+
+Transfer smallest element to second main-memory array:
+[--, --, --, --, --, 34, --, 24, 47, --]
+[03, 05, 08, 09, 09, 11, 13, 14, 21, --]
+[]
+
+Chunk 0 from first main-memory array exhausted; load next 3 records:
+[25, 25, 51, --, --, 34, --, 24, 47, --]
+[03, 05, 08, 09, 09, 11, 13, 14, 21, --]
+[]
+
+Transfer smallest element to second main-memory array:
+[25, 25, 51, --, --, 34, --, --, 47, --]
+[03, 05, 08, 09, 09, 11, 13, 14, 21, 24]
+[]
+
+Second main-memory array full; write to file and clean:
+[25, 25, 51, --, --, 34, --, --, 47, --]
+[--, --, --, --, --, --, --, --, --, --]
+[03, 05, 08, 09, 09, 11, 13, 14, 21, 24]
+
+Transfer smallest element to second main-memory array:
+[--, 25, 51, --, --, 34, --, --, 47, --]
+[25, --, --, --, --, --, --, --, --, --]
+[03, 05, 08, 09, 09, 11, 13, 14, 21, 24]
+
+Transfer smallest element to second main-memory array:
+[--, --, 51, --, --, 34, --, --, 47, --]
+[25, 25, --, --, --, --, --, --, --, --]
+[03, 05, 08, 09, 09, 11, 13, 14, 21, 24]
+
+Transfer smallest element to second main-memory array:
+[--, --, 51, --, --, --, --, --, 47, --]
+[25, 25, 34, --, --, --, --, --, --, --]
+[03, 05, 08, 09, 09, 11, 13, 14, 21, 24]
+
+Chunk 1 from first main-memory array exhausted; load next 3 records:
+[--, --, 51, 35, 36, 51, --, --, 47, --]
+[25, 25, 34, --, --, --, --, --, --, --]
+[03, 05, 08, 09, 09, 11, 13, 14, 21, 24]
+
+Transfer smallest element to second main-memory array:
+[--, --, 51, --, 36, 51, --, --, 47, --]
+[25, 25, 34, 35, --, --, --, --, --, --]
+[03, 05, 08, 09, 09, 11, 13, 14, 21, 24]
+
+Transfer smallest element to second main-memory array:
+[--, --, 51, --, --, 51, --, --, 47, --]
+[25, 25, 34, 35, 36, --, --, --, --, --]
+[03, 05, 08, 09, 09, 11, 13, 14, 21, 24]
+
+Transfer smallest element to second main-memory array:
+[--, --, 51, --, --, 51, --, --, --, --]
+[25, 25, 34, 35, 36, 47, --, --, --, --]
+[03, 05, 08, 09, 09, 11, 13, 14, 21, 24]
+
+Chunk 2 from first main-memory array exhausted; load next 3 records:
+[--, --, 51, --, --, 51, 56, 79, 79, --]
+[25, 25, 34, 35, 36, 47, --, --, --, --]
+[03, 05, 08, 09, 09, 11, 13, 14, 21, 24]
+
+Transfer smallest element to second main-memory array:
+[--, --, --, --, --, 51, 56, 79, 79, --]
+[25, 25, 34, 35, 36, 47, 51, --, --, --]
+[03, 05, 08, 09, 09, 11, 13, 14, 21, 24]
+
+Chunk 0 from first main-memory array exhausted; load next 3 records:
+[60, 68, 72, --, --, 51, 56, 79, 79, --]
+[25, 25, 34, 35, 36, 47, 51, --, --, --]
+[03, 05, 08, 09, 09, 11, 13, 14, 21, 24]
+
+Transfer smallest element to second main-memory array:
+[60, 68, 72, --, --, --, 56, 79, 79, --]
+[25, 25, 34, 35, 36, 47, 51, 51, --, --]
+[03, 05, 08, 09, 09, 11, 13, 14, 21, 24]
+
+Chunk 1 from first main-memory array exhausted; load next 3 records:
+[60, 68, 72, 95, --, --, 56, 79, 79, --]
+[25, 25, 34, 35, 36, 47, 51, 51, --, --]
+[03, 05, 08, 09, 09, 11, 13, 14, 21, 24]
+
+Transfer smallest element to second main-memory array:
+[60, 68, 72, 95, --, --, --, 79, 79, --]
+[25, 25, 34, 35, 36, 47, 51, 51, 56, --]
+[03, 05, 08, 09, 09, 11, 13, 14, 21, 24]
+
+Transfer smallest element to second main-memory array:
+[--, 68, 72, 95, --, --, --, 79, 79, --]
+[25, 25, 34, 35, 36, 47, 51, 51, 56, 60]
+[03, 05, 08, 09, 09, 11, 13, 14, 21, 24]
+
+Second main-memory array full; write to file and clean:
+[--, 68, 72, 95, --, --, --, 79, 79, --]
+[--, --, --, --, --, --, --, --, --, --]
+[03, 05, 08, 09, 09, 11, 13, 14, 21, 24, 25, 25, 34, 35, 36, 47, 51, 51, 56, 60]
+
+Transfer smallest element to second main-memory array:
+[--, --, 72, 95, --, --, --, 79, 79, --]
+[68, --, --, --, --, --, --, --, --, --]
+[03, 05, 08, 09, 09, 11, 13, 14, 21, 24, 25, 25, 34, 35, 36, 47, 51, 51, 56, 60]
+
+Transfer smallest element to second main-memory array:
+[--, --, --, 95, --, --, --, 79, 79, --]
+[68, 72, --, --, --, --, --, --, --, --]
+[03, 05, 08, 09, 09, 11, 13, 14, 21, 24, 25, 25, 34, 35, 36, 47, 51, 51, 56, 60]
+
+Chunk 0 from first main-memory array exhausted; load next 3 records:
+[92, --, --, 95, --, --, --, 79, 79, --]
+[68, 72, --, --, --, --, --, --, --, --]
+[03, 05, 08, 09, 09, 11, 13, 14, 21, 24, 25, 25, 34, 35, 36, 47, 51, 51, 56, 60]
+
+Transfer smallest element to second main-memory array:
+[92, --, --, 95, --, --, --, --, 79, --]
+[68, 72, 79, --, --, --, --, --, --, --]
+[03, 05, 08, 09, 09, 11, 13, 14, 21, 24, 25, 25, 34, 35, 36, 47, 51, 51, 56, 60]
+
+Transfer smallest element to second main-memory array:
+[92, --, --, 95, --, --, --, --, --, --]
+[68, 72, 79, 79, --, --, --, --, --, --]
+[03, 05, 08, 09, 09, 11, 13, 14, 21, 24, 25, 25, 34, 35, 36, 47, 51, 51, 56, 60]
+
+Chunk 2 from first main-memory array exhausted; load next 3 records:
+[92, --, --, 95, --, --, 84, 94, --, --]
+[68, 72, 79, 79, --, --, --, --, --, --]
+[03, 05, 08, 09, 09, 11, 13, 14, 21, 24, 25, 25, 34, 35, 36, 47, 51, 51, 56, 60]
+
+Transfer smallest element to second main-memory array:
+[92, --, --, 95, --, --, --, 94, --, --]
+[68, 72, 79, 79, 84, --, --, --, --, --]
+[03, 05, 08, 09, 09, 11, 13, 14, 21, 24, 25, 25, 34, 35, 36, 47, 51, 51, 56, 60]
+
+Transfer smallest element to second main-memory array:
+[--, --, --, 95, --, --, --, 94, --, --]
+[68, 72, 79, 79, 84, 92, --, --, --, --]
+[03, 05, 08, 09, 09, 11, 13, 14, 21, 24, 25, 25, 34, 35, 36, 47, 51, 51, 56, 60]
+
+Chunk 0 from first main-memory array exhausted; no records left:
+[--, --, --, 95, --, --, --, 94, --, --]
+[68, 72, 79, 79, 84, 92, --, --, --, --]
+[03, 05, 08, 09, 09, 11, 13, 14, 21, 24, 25, 25, 34, 35, 36, 47, 51, 51, 56, 60]
+
+Transfer smallest element to second main-memory array:
+[--, --, --, 95, --, --, --, --, --, --]
+[68, 72, 79, 79, 84, 92, 94, --, --, --]
+[03, 05, 08, 09, 09, 11, 13, 14, 21, 24, 25, 25, 34, 35, 36, 47, 51, 51, 56, 60]
+
+Chunk 2 from first main-memory array exhausted; no records left:
+[--, --, --, 95, --, --, --, --, --, --]
+[68, 72, 79, 79, 84, 92, 94, --, --, --]
+[03, 05, 08, 09, 09, 11, 13, 14, 21, 24, 25, 25, 34, 35, 36, 47, 51, 51, 56, 60]
+
+Transfer smallest element to second main-memory array:
+[--, --, --, --, --, --, --, --, --, --]
+[68, 72, 79, 79, 84, 92, 94, 95, --, --]
+[03, 05, 08, 09, 09, 11, 13, 14, 21, 24, 25, 25, 34, 35, 36, 47, 51, 51, 56, 60]
+
+Chunk 1 from first main-memory array exhausted; no records left:
+[--, --, --, --, --, --, --, --, --, --]
+[68, 72, 79, 79, 84, 92, 94, 95, --, --]
+[03, 05, 08, 09, 09, 11, 13, 14, 21, 24, 25, 25, 34, 35, 36, 47, 51, 51, 56, 60]
+
+All records exhausted; write remaining contents to file and clean:
+[--, --, --, --, --, --, --, --, --, --]
+[--, --, --, --, --, --, --, --, --, --]
+[03, 05, 08, 09, 09, 11, 13, 14, 21, 24, 25, 25, 34, 35, 36, 47, 51, 51, 56, 60, 68, 72, 79, 79, 84, 92, 94, 95]
+
+End
+
+====================================================================================
+
+FINAL RESULTS
+
+Contents of intermediate file name array:
+["small_0.dat", "small_1.dat", "small_2.dat"]
+
+Returned value from sort method:
+"small_sorted.dat"
+
+Total number of read/write operations:
+20
+
+Contents of "small_0.dat":
+[03, 09, 21, 25, 25, 51, 60, 68, 72, 92]
+
+Contents of "small_1.dat":
+[05, 08, 09, 11, 13, 34, 35, 36, 51, 95]
+
+Contents of "small_2.dat":
+[14, 24, 47, 56, 79, 79, 84, 94]
+
+Contents of "small_sorted.dat":
+[03, 05, 08, 09, 09, 11, 13, 14, 21, 24, 25, 25, 34, 35, 36, 47, 51, 51, 56, 60, 68, 72, 79, 79, 84, 92, 94, 95]
+
+====================================================================================
