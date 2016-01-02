@@ -1,0 +1,9 @@
+@RELATION flutter.dat
+
+@ATTRIBUTE attr0	real
+@ATTRIBUTE attr1	real
+@ATTRIBUTE class 	{0,1}
+
+@DATA
+0, 0, 1
+0, 1, 0

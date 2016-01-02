@@ -1,0 +1,1 @@
+"./random.obj" "./lcd.obj" "./eZ430X.obj" "./dicePics.obj" "./dice.obj" -l"rts430.lib" "../lnk_msp430f2274.cmd" 

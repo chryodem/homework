@@ -1,0 +1,1 @@
+"./blinky.obj" -l"rts430.lib" "../lnk_msp430f2013.cmd" 

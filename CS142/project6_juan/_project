@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>project6_juan</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>src/DriverProject3.java</name>
+			<type>1</type>
+			<location>C:/Users/Andrei/Downloads/Project3/Project3/src/flashcard/DriverProject3.java</location>
+		</link>
+		<link>
+			<name>src/DriverProject5.java</name>
+			<type>1</type>
+			<location>C:/Users/Andrei/Downloads/Project3/Project3/src/flashcard/DriverProject5.java</location>
+		</link>
+		<link>
+			<name>src/FlashCard.java</name>
+			<type>1</type>
+			<location>C:/Users/Andrei/Downloads/Project3/Project3/src/flashcard/FlashCard.java</location>
+		</link>
+		<link>
+			<name>src/Word.java</name>
+			<type>1</type>
+			<location>C:/Users/Andrei/Downloads/Project3/Project3/src/flashcard/Word.java</location>
+		</link>
+	</linkedResources>
+</projectDescription>

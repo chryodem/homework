@@ -1,0 +1,53 @@
+
+;------------------------------------------------------------------------------
+;				Compare the lights
+;------------------------------------------------------------------------------
+
+comparing:			mov.w r10,r12 ;restore the seed
+					call #setRandSeed ;to reuse the same seed
+					mov.w	#4,r11
+		
+keepPlaying:		dec.w	r11
+					call	rand16 ;get the next value
+					and.w	#3,r12 ;and it
+					call	#getSwitch ;gets the value of the pressed button
+					jeq		keepPlaying
+		
+sw_button: 			cmp.w 	#8,r4
+					jne		sw_button1
+					cmp.w	#3,r12
+					
+					jne		RASPERRY
+					jeq		keepPlaying
+
+sw_button1: 		cmp.w 	#4,r4
+					jne		sw_button2
+					cmp.w	#2,r12
+					jne		RASPERRY
+					jeq		keepPlaying
+
+sw_button2:			cmp.w 	#2,r4
+					jne		sw_button3
+					cmp.w	#1,r12
+					jne		RASPERRY
+					jeq		keepPlaying
+
+sw_button3:			cmp.w 	#1,r4
+					cmp.w	#0,r12
+					jne 	RASPERRY
+					jeq		keepPlaying
+			
+default1:			
+
+sw_buttonEnd:
+
+;*******************************************************************************
+;**************************RASPERRY*********************************************
+
+RASPERRY:	    mov.w 	#10000, &TBCCR0
+supersmall:		mov.w	#20000,r15
+				jne		supersmall			
+				jmp		reset	
+
+			
+

@@ -1,0 +1,8 @@
+#Mon Aug 01 15:40:12 MDT 2011
+com.ti.ccstudio.buildDefinitions.MSP430.Debug.165652387/internalBuilder/enabled=false
+com.ti.ccstudio.buildDefinitions.MSP430.Debug.165652387/internalBuilder/ignoreErr=true
+com.ti.ccstudio.buildDefinitions.MSP430.Release.683704172/internalBuilder/enabled=false
+com.ti.ccstudio.buildDefinitions.MSP430.Release.683704172/internalBuilder/ignoreErr=true
+eclipse.preferences.version=1
+environment/project/com.ti.ccstudio.buildDefinitions.MSP430.Debug.165652387=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<environment/>\r\n
+environment/project/com.ti.ccstudio.buildDefinitions.MSP430.Release.683704172=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<environment/>\r\n

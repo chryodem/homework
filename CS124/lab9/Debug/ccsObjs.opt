@@ -1,0 +1,1 @@
+"./lcd.obj" "./graphics.obj" "./etch-a-sketch.obj" "./eZ430X.obj" "./adc.obj" -l"rts430.lib" "../lnk_msp430f2274.cmd" 
